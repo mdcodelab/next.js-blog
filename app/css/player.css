@@ -1,0 +1,34 @@
+.container-player {
+    width: max-content;
+    height: max-content;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    color: white;
+    font-size: 1.2rem;
+    border: 0.5px solid white;
+}
+
+.container-player h1 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn-now-playing {
+display: block;
+width: max-content;
+margin: 0 auto;
+}
+
+.div-now-playing div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-now-playing img {
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    width: 50%;
+    margin-top: 1rem;
+    border-radius: 0.2rem;
+}

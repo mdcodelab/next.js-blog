@@ -28,7 +28,6 @@ async function RadioPlayer() {
               <strong>Title:</strong> {data.nowPlaying.title}
             </p>
           </div>
-          <img src={data.nowPlaying.cover_small}></img>
         </div>
       </div>
     );

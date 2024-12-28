@@ -1,6 +1,8 @@
 import { Bebas_Neue, Comfortaa, Kanit } from "next/font/google";
 import "./css/globals.css";
 import "./css/news.css";
+import "./css/calendar.css";
+import "./css/weather.css";
 import "./css/player.css";
 
 const bebasNeue = Bebas_Neue({

@@ -1,6 +1,7 @@
 import React from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
+import RadioPlayer from "./RadioPlayer";
 
 function News() {
   return (
@@ -26,6 +27,7 @@ function News() {
         <div className="weather-calendar">
           <Weather />
           <Calendar />
+          <RadioPlayer></RadioPlayer>
         </div>
       </div>
 

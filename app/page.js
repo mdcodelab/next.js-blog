@@ -7,7 +7,6 @@ function Home() {
     <div className="container">
         <div className="news-blog-app">
           <News></News>
-          <RadioPlayer></RadioPlayer>
         </div>
     </div>
   )

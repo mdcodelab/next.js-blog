@@ -1,3 +1,85 @@
 .news {
-    
+    font-size: 2rem;
+    color: white;
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 2rem;
+}
+
+.news-header {
+    width: 100%;
+    min-height: 7rem;
+    background-color: #111214;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.news-content {
+    display: flex;
+    column-gap: 2rem;
+    height: calc(100% - 16rem);
+    padding: 0 2rem;
+    border: 2px solid red;
+}
+
+.navbar {
+    width: 18rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem; 
+    border: 1px solid white;
+}
+
+.user {
+    width: 100%;
+    height: 20%;
+    background-color: #111214;
+    border-radius: 1rem;
+}
+
+.categories {
+    width: 100%;
+    height: calc(80% - 2rem);
+    border-radius: 1rem;
+}
+
+.news-section {
+    width: clamp(30rem, 43cqi, 40%);
+    height: 100%;
+    border-radius: 1rem;
+    border: 1px solid red;
+}
+
+.headline {
+    width: 100%;
+    height: calc(50% - 2rem);
+    background-color: #111214;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.news-grid {
+    width: 100%;
+    height: 50%;
+    background-color: #111214;
+    border-radius: 1rem;
+} 
+
+.my-blogs {
+    width: clamp(20rem, 27cqi, 28%);
+    background-color: #111214;
+    border-radius: 1rem;
+}
+
+
+
+.news-footer {
+    width: 100%;
+    min-height: 5rem;
+    background-color: #111214;
+    border-radius: 0rem 0rem 1rem 1rem;
+    border: 1px solid red;
 }

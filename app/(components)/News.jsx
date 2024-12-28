@@ -1,29 +1,38 @@
-import React from 'react'
-import Weather from './Weather';
-import Calendar from './Calendar';
-
+import React from "react";
+import Weather from "./Weather";
+import Calendar from "./Calendar";
 
 function News() {
   return (
     <div className="news">
-      <header className="news-header">News header</header>
+      {/* Header Section */}
+      <header className="news-header">
+        <h1>News Header</h1>
+      </header>
+
+      {/* Content Section */}
       <div className="news-content">
-        <div className="navbar">
+        <nav className="navbar">
           <div className="user">User</div>
           <div className="categories">Categories</div>
-        </div>
+        </nav>
+
         <div className="news-section">
           <div className="headline">Headline</div>
-          <div className="news-grid">News </div>
+          <div className="news-grid">News Grid</div>
         </div>
 
-        <div className="my-blog">
-          <Weather></Weather>
-          <Calendar></Calendar>
+        <div className="my-blogs">My Blogs</div>
+        <div className="weather-calendar">
+          <Weather />
+          <Calendar />
         </div>
-
-        <footer className="news-footer">News Footer</footer>
       </div>
+
+      {/* Footer Section */}
+      <footer className="news-footer">
+        <p>Footer Content</p>
+      </footer>
     </div>
   );
 }

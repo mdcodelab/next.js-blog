@@ -3,6 +3,8 @@ import Weather from "./Weather";
 import Calendar from "./Calendar";
 import RadioPlayer from "./RadioPlayer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { IoBookmarksOutline } from "react-icons/io5";
+import Link from "next/link";
 
 function News() {
   return (
@@ -21,8 +23,20 @@ function News() {
       {/* Content Section */}
       <div className="news-content">
         <nav className="navbar">
-          <div className="user">User</div>
-          <div className="categories">Categories</div>
+          <div className="user">
+            <img src="images/me.jpg" alt="user"></img>
+            <p>Mihaela's Blog</p>
+          </div>
+          <div className="categories">
+            <h1 className="nav-headings">Categories</h1>
+            <div className="nav-links">
+              <Link href="#" className="nav-link">General</Link>
+              <Link href="#" className="nav-link">World</Link>
+              <Link href="#" className="nav-link">Business</Link>
+              <Link href="#" className="nav-link">Business</Link>
+              <Link href="#" className="nav-link">Bookmark <IoBookmarksOutline className="icon"></IoBookmarksOutline></Link>
+            </div>
+          </div>
         </nav>
 
         <div className="news-section">

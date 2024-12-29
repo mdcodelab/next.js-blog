@@ -159,18 +159,87 @@ display: block;
 
 .headline {
     width: 100%;
-    height: calc(50% - 2rem);
+    height: 18rem;
+    /* height: 250px; */
     background-color: #111214;
     border-radius: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    border: 2px solid white;
+    position: relative;
+}
+
+.headline img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    opacity: 0.6;
+}
+
+.headline-title {
+width: 100%;
+position: absolute;
+bottom: 0;
+left: 0;
+padding: 1rem 4rem 1rem;
+font-family: "Bebas Neue", sans-serif;
+font-size: clamp(1.5rem, 1.8cqi, 3rem);
+letter-spacing: 0.1rem;
+color: #fff;
+background-color: rgba(0,0,0,0.7);
+border-radius: 0, 0, 1rem 1rem;
+}
+
+.bookmark {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
 }
 
 .news-grid {
     width: 100%;
-    height: 50%;
+    height: 30vh;
     background-color: #111214;
     border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    justify-items: center;
+    align-items: center;
 } 
+
+.news-grid-item {
+    position: relative;
+    width: 100%;
+    min-height: 11rem;
+    border-radius: 1rem;
+}
+
+.news-grid-item h3 {
+position: absolute;
+top: 4rem;
+left: 0;
+font-size: 1.5rem;
+padding: 1rem 3rem 1rem 1rem;
+font-family: "Bebas Neue", sans-serif;
+line-height: 1.4rem;
+background-color: rgba(0,0,0,0.7);
+border-radius: 0 0 1rem 1rem;
+width: 100%;
+font-weight: 300;
+}
+
+.news-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1rem;
+    opacity: 0.5;
+}
 
 .my-blogs {
     width: clamp(20rem, 27cqi, 28%);

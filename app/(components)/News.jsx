@@ -15,7 +15,9 @@ function News() {
         <div className="search-bar">
           <form>
             <input type="text" placeholder="Search news..."></input>
-            <button type="submit"><FaMagnifyingGlass></FaMagnifyingGlass></button>
+            <button type="submit">
+              <FaMagnifyingGlass></FaMagnifyingGlass>
+            </button>
           </form>
         </div>
       </header>
@@ -30,18 +32,52 @@ function News() {
           <div className="categories">
             <h1 className="nav-headings">Categories</h1>
             <div className="nav-links">
-              <Link href="#" className="nav-link">General</Link>
-              <Link href="#" className="nav-link">World</Link>
-              <Link href="#" className="nav-link">Business</Link>
-              <Link href="#" className="nav-link">Business</Link>
-              <Link href="#" className="nav-link">Bookmark <IoBookmarksOutline className="icon"></IoBookmarksOutline></Link>
+              <Link href="#" className="nav-link">
+                HTML & CSS
+              </Link>
+              <Link href="#" className="nav-link">
+                Vanilla JS
+              </Link>
+              <Link href="#" className="nav-link">
+                React.js & Next.js
+              </Link>
+              <Link href="#" className="nav-link">
+                Back-end
+              </Link>
+              <Link href="#" className="nav-link">
+                Bookmark{" "}
+                <IoBookmarksOutline className="icon"></IoBookmarksOutline>
+              </Link>
             </div>
           </div>
         </nav>
 
         <div className="news-section">
-          <div className="headline">Headline</div>
-          <div className="news-grid">News Grid</div>
+          <div className="headline">
+            <img src="images/tech.jpg" alt="headline-image"></img>
+            <h2 className="headline-title">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <IoBookmarksOutline className="bookmark"></IoBookmarksOutline>
+            </h2>
+          </div>
+          <div className="news-grid">
+            <div className="news-grid-item">
+              <img src="images/html.png" alt="news item"></img>
+              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
+            </div>
+            <div className="news-grid-item">
+              <img src="images/js.png" alt="news item"></img>
+              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
+            </div>
+            <div className="news-grid-item">
+              <img src="images/react.png" alt="news item"></img>
+              <h3>Lorem ipsum dolor sit amet consectetur.<IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
+            </div>
+            <div className="news-grid-item">
+              <img src="images/react.png" alt="news item"></img>
+              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
+            </div>
+          </div>
         </div>
 
         <div className="my-blogs">My Blogs</div>

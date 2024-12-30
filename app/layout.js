@@ -4,6 +4,7 @@ import "./css/news.css";
 import "./css/calendar.css";
 import "./css/weather.css";
 import "./css/player.css";
+import "./css/newsModal.css";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",

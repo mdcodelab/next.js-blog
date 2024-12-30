@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
+import RadioPlayer from "./RadioPlayer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline } from "react-icons/io5";
 import Link from "next/link";
 import axios from "axios";
+import NewsModal from "./NewsModal";
 
 function News() {
   const [headline, setHeadline] = useState([]);
@@ -153,9 +155,11 @@ function News() {
         </div>
 
         <div className="my-blogs">My Blogs</div>
+        <NewsModal></NewsModal>
         <div className="weather-calendar">
           <Weather />
           <Calendar />
+          <RadioPlayer></RadioPlayer>
         </div>
       </div>
 

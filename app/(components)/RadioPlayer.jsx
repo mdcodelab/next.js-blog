@@ -1,17 +1,44 @@
+"use client";
 
-import { fetchRadio } from "../../utilities/fetchRadio"; // Asigură-te că importi corect funcția
+import { useState, useEffect } from "react";
 
-async function RadioPlayer() {
-  const data = await fetchRadio();
+function RadioPlayer() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
 
-  if (data?.nowPlaying) {
+  useEffect(() => {
+    const fetchRadio = async () => {
+      try {
+        
+          const response = await fetch("https://api.allorigins.win/raw?url=http://api.radioparadise.com/api/now_playing");
 
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const nowPlaying = await response.json();
+        setData(nowPlaying);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching radio data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchRadio();
+  }, []);
+
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
+  }
+
+  if (data) {
     return (
       <div className="container-player">
         <h1>Radio Paradise</h1>
         <audio controls autoPlay>
           <source
-            src="https://stream.radioparadise.com/flac"
+            src="http://stream.radioparadise.com/flac"
             type="audio/flac"
           />
           Your browser does not support the audio element.
@@ -20,18 +47,21 @@ async function RadioPlayer() {
           <h2>Now Playing:</h2>
           <div>
             <p>
-              <strong>Artist:</strong> {data.nowPlaying.artist}
+              <strong>Artist:</strong> {data.artist || "Unknown"}
             </p>
             <p>
-              <strong>Title:</strong> {data.nowPlaying.title}
+              <strong>Title:</strong> {data.title || "Unknown"}
+            </p>
+            <p>
+              <strong>Album:</strong> {data.album || "Unknown"}
             </p>
           </div>
         </div>
       </div>
     );
-  } else {
-    return <div className="text-white">Loading...</div>;
   }
+
+  return <div className="text-white">No data available.</div>;
 }
 
 export default RadioPlayer;

@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
 import RadioPlayer from "./RadioPlayer";
@@ -10,28 +9,33 @@ import Link from "next/link";
 import axios from "axios";
 
 function News() {
-  const[headline, setHeadline]=useState(null);
-const [news, setNews] = useState([]);
- const [isLoading, setLoading] = useState(true);
+  const [headline, setHeadline] = useState([]);
+  const [news, setNews] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
- useEffect(() => {
-   const fetchNews = async () => {
-     try {
-       const url =
-         "https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58";
-       const response = await axios.get(url);
-       setNews(response.data.articles);
-       setLoading(false);
-     } catch (error) {
-       console.error("Error fetching news:", error);
-       setLoading(false);
-     }
-   };
-   fetchNews();
- }, []);
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const url =
+          "https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58";
+        const response = await axios.get(url);
+        setHeadline(response.data.articles);
+        setNews(response.data.articles.slice(1, 4));
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+        setLoading(false);
+      }
+    };
 
-console.log("Newssssssssssssssssssssssssssss", news);
+    fetchNews();
+  }, []);
 
+  // Funcție pentru scurtarea textului
+  const truncateText = (text, maxLength) => {
+    if (!text) return "No title available";
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
 
   return (
     <div className="news">
@@ -40,9 +44,9 @@ console.log("Newssssssssssssssssssssssssssss", news);
         <h1 className="logo">News & Blogs</h1>
         <div className="search-bar">
           <form>
-            <input type="text" placeholder="Search news..."></input>
+            <input type="text" placeholder="Search news..." />
             <button type="submit">
-              <FaMagnifyingGlass></FaMagnifyingGlass>
+              <FaMagnifyingGlass />
             </button>
           </form>
         </div>
@@ -52,7 +56,7 @@ console.log("Newssssssssssssssssssssssssssss", news);
       <div className="news-content">
         <nav className="navbar">
           <div className="user">
-            <img src="images/me.jpg" alt="user"></img>
+            <img src="images/me.jpg" alt="user" />
             <p>Mihaela's Blog</p>
           </div>
           <div className="categories">
@@ -71,38 +75,45 @@ console.log("Newssssssssssssssssssssssssssss", news);
                 Back-end
               </Link>
               <Link href="#" className="nav-link">
-                Bookmark{" "}
-                <IoBookmarksOutline className="icon"></IoBookmarksOutline>
+                Bookmark <IoBookmarksOutline className="icon" />
               </Link>
             </div>
           </div>
         </nav>
 
         <div className="news-section">
+          {/* Headline Section */}
           <div className="headline">
-            <img src="images/tech.jpg" alt="headline-image"></img>
+            <img
+              src={headline[0]?.image || "images/default-headline.jpg"}
+              alt={headline[0]?.title || "No headline"}
+            />
             <h2 className="headline-title">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              <IoBookmarksOutline className="bookmark"></IoBookmarksOutline>
+              {truncateText(headline[0]?.title, 25)}
+              <IoBookmarksOutline className="bookmark" />
             </h2>
           </div>
+
+          {/* News Grid Section */}
           <div className="news-grid">
-            <div className="news-grid-item">
-              <img src="images/html.png" alt="news item"></img>
-              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
-            </div>
-            <div className="news-grid-item">
-              <img src="images/js.png" alt="news item"></img>
-              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
-            </div>
-            <div className="news-grid-item">
-              <img src="images/react.webp" alt="news item"></img>
-              <h3>Lorem ipsum dolor sit amet consectetur.<IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
-            </div>
-            <div className="news-grid-item">
-              <img src="images/react.png" alt="news item"></img>
-              <h3>Lorem ipsum dolor sit amet consectetur. <IoBookmarksOutline className="bookmark"></IoBookmarksOutline></h3>
-            </div>
+            {isLoading ? (
+              <p>Loading news...</p>
+            ) : news.length > 0 ? (
+              news.map((item, index) => (
+                <div key={index} className="news-grid-item">
+                  <img
+                    src={item.image || "images/default-news.jpg"}
+                    alt={item.title || "No title"}
+                  />
+                  <h3>
+                    {truncateText(item.title, 25)}{" "}
+                    <IoBookmarksOutline className="bookmark" />
+                  </h3>
+                </div>
+              ))
+            ) : (
+              <p>No news available.</p>
+            )}
           </div>
         </div>
 
@@ -110,7 +121,7 @@ console.log("Newssssssssssssssssssssssssssss", news);
         <div className="weather-calendar">
           <Weather />
           <Calendar />
-          <RadioPlayer></RadioPlayer>
+          {/* <RadioPlayer /> */}
         </div>
       </div>
 

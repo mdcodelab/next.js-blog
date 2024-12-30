@@ -6,6 +6,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline } from "react-icons/io5";
 import Link from "next/link";
 import axios from "axios";
+import RadioPlayer from "./RadioPlayer";
 
 function News() {
   const [headline, setHeadline] = useState([]);
@@ -14,31 +15,28 @@ function News() {
   const [selectedCategory, setSelectedCategory] = useState("general");
 
   const categories = ["general", "technology", "science", "health"];
+
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Fetch News
   useEffect(() => {
     const fetchNews = async () => {
       try {
         setLoading(true);
+        let url = "";
 
-        // Construim URL-ul
-        const url = searchQuery
-          ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(
-              searchQuery
-            )}&lang=en&apikey=fbe7c28b4bee8e0e74169aa571e63b58`
-          : `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58`;
+        if (searchQuery) {
+          url = `https://gnews.io/api/v4/search?q=${searchQuery}&lang=en&apikey=fbe7c28b4bee8e0e74169aa571e63b58`;
+        } else {
+          url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58`;
+        }
 
-        console.log("Fetching from URL:", url); // Verificăm URL-ul
         const response = await axios.get(url);
-
-        // Actualizăm datele
-        setHeadline(response.data.articles || []);
-        setNews(response.data.articles?.slice(1, 5) || []);
+        setHeadline(response.data.articles);
+        setNews(response.data.articles.slice(1, 5));
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching news:", error);
-      } finally {
         setLoading(false);
       }
     };
@@ -52,20 +50,14 @@ function News() {
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
 
-  // Setăm categoria
   const handleCategoryClick = (e, category) => {
     e.preventDefault();
     setSelectedCategory(category);
-    setSearchQuery(""); // Resetăm căutarea când selectăm o categorie
   };
 
-  // Handluim căutarea
   const handleSearch = (e) => {
     e.preventDefault();
-
-    if (searchInput.trim()) {
-      setSearchQuery(searchInput.trim());
-    }
+    setSearchQuery(searchInput);
     setSearchInput("");
   };
 
@@ -156,6 +148,7 @@ function News() {
         <div className="weather-calendar">
           <Weather />
           <Calendar />
+          <RadioPlayer></RadioPlayer>
         </div>
       </div>
 

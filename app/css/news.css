@@ -135,6 +135,7 @@ margin-bottom: 1.5rem;
     letter-spacing: 0.1rem;
     display: flex;
     align-items: center;
+    text-transform: capitalize;
     transition: all 0.3s ease;
 }
 

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
-import RadioPlayer from "./RadioPlayer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline } from "react-icons/io5";
 import Link from "next/link";
@@ -12,15 +11,18 @@ function News() {
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("general");
+
+  const categories = ["general", "technology", "science", "health"];
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const url =
-          "https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58";
+        setLoading(true);
+        const url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58`;
         const response = await axios.get(url);
         setHeadline(response.data.articles);
-        setNews(response.data.articles.slice(1, 4));
+        setNews(response.data.articles.slice(1, 5));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching news:", error);
@@ -29,12 +31,17 @@ function News() {
     };
 
     fetchNews();
-  }, []);
+  }, [selectedCategory]);
 
   // Funcție pentru scurtarea textului
   const truncateText = (text, maxLength) => {
     if (!text) return "No title available";
     return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
+
+  const handleCategoryClick = (e, category) => {
+    e.preventDefault();
+    setSelectedCategory(category);
   };
 
   return (
@@ -62,18 +69,16 @@ function News() {
           <div className="categories">
             <h1 className="nav-headings">Categories</h1>
             <div className="nav-links">
-              <Link href="#" className="nav-link">
-                HTML & CSS
-              </Link>
-              <Link href="#" className="nav-link">
-                Vanilla JS
-              </Link>
-              <Link href="#" className="nav-link">
-                React.js & Next.js
-              </Link>
-              <Link href="#" className="nav-link">
-                Back-end
-              </Link>
+              {categories.map((category) => (
+                <Link
+                  key={category}
+                  href="#"
+                  onClick={(e) => handleCategoryClick(e, category)}
+                  className="nav-link"
+                >
+                  {category}
+                </Link>
+              ))}
               <Link href="#" className="nav-link">
                 Bookmark <IoBookmarksOutline className="icon" />
               </Link>
@@ -121,7 +126,6 @@ function News() {
         <div className="weather-calendar">
           <Weather />
           <Calendar />
-          {/* <RadioPlayer /> */}
         </div>
       </div>
 

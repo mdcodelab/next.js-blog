@@ -4,9 +4,7 @@ import { fetchRadio } from "../../utilities/fetchRadio"; // Asigură-te că impo
 async function RadioPlayer() {
   const data = await fetchRadio();
 
-  console.log("++++++++++++++++++++", data);
-
-  if (data.nowPlaying) {
+  if (data?.nowPlaying) {
 
     return (
       <div className="container-player">

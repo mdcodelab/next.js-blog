@@ -32,7 +32,7 @@
 .modal-image {
 width: 100%;
 height: auto;
-max-height: 30rem;
+max-height: 26rem;
 object-fit: cover;
 border-radius: 1rem;
 opacity: 0.5;
@@ -43,7 +43,7 @@ opacity: 0.5;
     font-size: 2rem;
     color: #fff;
     letter-spacing: 0.1rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .modal-source, .modal-date {
@@ -55,7 +55,7 @@ opacity: 0.5;
 
 .modal-content-text {
     font-size: 1.6rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     color: #ddd;
     line-height: 2rem;
 }
@@ -63,7 +63,7 @@ opacity: 0.5;
 .read-more-link {
     width: 15rem;
     display: inline-block;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     background: linear-gradient(to right, #b88efc, #6877f4);
     color: #fff;;
     padding: 1rem 2rem;

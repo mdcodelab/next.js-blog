@@ -32,7 +32,6 @@ function News() {
             )}&lang=en&apikey=fbe7c28b4bee8e0e74169aa571e63b58`
           : `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&country=us&max=10&apikey=fbe7c28b4bee8e0e74169aa571e63b58`;
 
-        console.log("Fetching from URL:", url); // Verificăm URL-ul
         const response = await axios.get(url);
 
         // Actualizăm datele
@@ -58,7 +57,7 @@ function News() {
   const handleCategoryClick = (e, category) => {
     e.preventDefault();
     setSelectedCategory(category);
-    setSearchQuery(""); // Resetăm căutarea când selectăm o categorie
+    setSearchQuery("");
   };
 
   // Handluim căutarea
@@ -69,6 +68,16 @@ function News() {
       setSearchQuery(searchInput.trim());
     }
     setSearchInput("");
+  };
+
+  //modal
+  const [showModal, setShowModal] = useState(false);
+  const [selectedArticle, setSelectedArticle]=useState(null);
+
+  const handleArticleClick = (article) => {
+    setSelectedArticle(article);
+    setShowModal(true);
+    console.log("Articlelllllllllllllll", article);
   };
 
   return (
@@ -120,7 +129,7 @@ function News() {
 
         <div className="news-section">
           {/* Headline Section */}
-          <div className="headline">
+          <div className="headline" onClick={()=> handleArticleClick(headline[0])}>
             <img
               src={headline[0]?.image || "images/default-headline.jpg"}
               alt={headline[0]?.title || "No headline"}
@@ -137,7 +146,7 @@ function News() {
               <p>Loading news...</p>
             ) : news.length > 0 ? (
               news.map((item, index) => (
-                <div key={index} className="news-grid-item">
+                <div key={index} className="news-grid-item" onClick={()=> handleArticleClick(item)}>
                   <img
                     src={item.image || "images/default-news.jpg"}
                     alt={item.title || "No title"}
@@ -155,7 +164,7 @@ function News() {
         </div>
 
         <div className="my-blogs">My Blogs</div>
-        <NewsModal></NewsModal>
+        <NewsModal show={showModal} article={selectedArticle} onClose={()=> setShowModal(false)}></NewsModal>
         <div className="weather-calendar">
           <Weather />
           <Calendar />

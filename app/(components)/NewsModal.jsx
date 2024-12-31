@@ -1,25 +1,64 @@
-import React from 'react';
+import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import Image from 'next/image';
 
-function NewsModal() {
+function NewsModal({ show, article, onClose }) {
+  if (!show) {
+    return null;
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <span className="close-button">
-            <IoCloseSharp></IoCloseSharp>
+        <span className="close-button" onClick={onClose}>
+          <IoCloseSharp />
         </span>
-        <img src="/images/blog1.jpg" alt="modal" className="modal-image"></img>
-        <h2 className="modal-title">Lorem ipsum dolor, sit amet 
-        consectetur adipisicing elit. Soluta, culpa.</h2>
-        <p className="modal-source">Source: The Guardian</p>
-        <p className="modal-date">June 24, 2024, 04:15 PM</p>
-        <p className="modal-content-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Assumenda maiores eum quos ex facere aut est.</p>
-        <a href="#" className="read-more-link">Read More</a>
+        {article && (
+          <>
+            {article.image && (
+              <img
+                src={article.image}
+                alt={article.title || "News image"}
+                className="modal-image"
+              />
+            )}
+            <h2 className="modal-title">
+              {article.title || "No title available"}
+            </h2>
+            <p className="modal-source">
+              Source: {article.source?.name || "Unknown"}
+            </p>
+            <p className="modal-date">
+              {article.publishedAt
+                ? formatDate(article.publishedAt)
+                : "Unknown date"}
+            </p>
+            <p className="modal-content-text">
+              {article.content || "No additional content available."}
+            </p>
+            <a
+              href={article.url}
+              className="read-more-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read More
+            </a>
+          </>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export default NewsModal
+export default NewsModal;

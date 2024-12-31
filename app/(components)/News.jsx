@@ -8,6 +8,7 @@ import { IoBookmarksOutline } from "react-icons/io5";
 import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
+import Bookmarks from "./Bookmarks";
 
 function News() {
   const [headline, setHeadline] = useState([]);
@@ -163,6 +164,7 @@ function News() {
           </div>
         </div>
 
+            <Bookmarks></Bookmarks>
         <div className="my-blogs">My Blogs</div>
         <NewsModal show={showModal} article={selectedArticle} onClose={()=> setShowModal(false)}></NewsModal>
         <div className="weather-calendar">

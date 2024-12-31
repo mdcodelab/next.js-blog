@@ -8,7 +8,7 @@ function Bookmarks() {
     <div className="modal-overlay">
       <div className="modal-content">
         <span className="close-button"><IoCloseSharp></IoCloseSharp></span>
-        <h2 className="bookmarks-heading">Bookmark News</h2>
+        <h2 className="bookmarks-heading">Bookmarked News</h2>
         <div className="bookmarks-list">
           <div className="bookmark-item">
             <Image src="/images/demo.jpg" alt="bookmark image" width={4900} height={200}></Image>

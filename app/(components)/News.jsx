@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
 import RadioPlayer from "./RadioPlayer";
@@ -71,14 +72,35 @@ function News() {
     setSearchInput("");
   };
 
-  //modal
+  // Modal
   const [showModal, setShowModal] = useState(false);
-  const [selectedArticle, setSelectedArticle]=useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const handleArticleClick = (article) => {
     setSelectedArticle(article);
     setShowModal(true);
-    console.log("Articlelllllllllllllll", article);
+  };
+
+  // Bookmarks
+  const [bookmarks, setBookmarks] = useState([]);
+  const [showBookmarksModal, setShowBookmarksModal] = useState(false);
+
+  const handleBookmarkClick = (article) => {
+    setBookmarks((prevBookmarks) => {
+      const isAlreadyBookmarked = prevBookmarks.some(
+        (bookmark) => bookmark.title === article.title
+      );
+
+      if (isAlreadyBookmarked) {
+        // Eliminăm articolul din bookmark-uri
+        return prevBookmarks.filter(
+          (bookmark) => bookmark.title !== article.title
+        );
+      } else {
+        // Adăugăm articolul în bookmark-uri
+        return [...prevBookmarks, article];
+      }
+    });
   };
 
   return (
@@ -105,7 +127,7 @@ function News() {
       <div className="news-content">
         <nav className="navbar">
           <div className="user">
-            <img src="images/me.jpg" alt="user" />
+            <img src="/images/me.jpg" alt="user" />
             <p>Mihaela's Blog</p>
           </div>
           <div className="categories">
@@ -121,7 +143,14 @@ function News() {
                   {category}
                 </Link>
               ))}
-              <Link href="#" className="nav-link">
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowBookmarksModal(true);
+                }}
+                className="nav-link"
+              >
                 Bookmark <IoBookmarksOutline className="icon" />
               </Link>
             </div>
@@ -130,14 +159,25 @@ function News() {
 
         <div className="news-section">
           {/* Headline Section */}
-          <div className="headline" onClick={()=> handleArticleClick(headline[0])}>
+          <div
+            className="headline"
+            onClick={() => handleArticleClick(headline[0])}
+          >
             <img
-              src={headline[0]?.image || "images/default-headline.jpg"}
+              src={headline[0]?.image || "/images/default-headline.jpg"}
               alt={headline[0]?.title || "No headline"}
+              width={400}
+              height={200}
             />
             <h2 className="headline-title">
               {truncateText(headline[0]?.title, 20)}
-              <IoBookmarksOutline className="bookmark" />
+              <IoBookmarksOutline
+                className="bookmark"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBookmarkClick(headline[0]);
+                }}
+              />
             </h2>
           </div>
 
@@ -147,14 +187,24 @@ function News() {
               <p>Loading news...</p>
             ) : news.length > 0 ? (
               news.map((item, index) => (
-                <div key={index} className="news-grid-item" onClick={()=> handleArticleClick(item)}>
+                <div
+                  key={index}
+                  className="news-grid-item"
+                  onClick={() => handleArticleClick(item)}
+                >
                   <img
-                    src={item.image || "images/default-news.jpg"}
+                    src={item.image || "/images/default-news.jpg"}
                     alt={item.title || "No title"}
                   />
                   <h3>
                     {truncateText(item.title, 20)}{" "}
-                    <IoBookmarksOutline className="bookmark" />
+                    <IoBookmarksOutline
+                      className="bookmark"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleBookmarkClick(item);
+                      }}
+                    />
                   </h3>
                 </div>
               ))
@@ -164,13 +214,28 @@ function News() {
           </div>
         </div>
 
-            <Bookmarks></Bookmarks>
+        {showBookmarksModal && (
+          <Bookmarks
+            bookmarks={bookmarks}
+            onRemoveBookmark={(article) =>
+              setBookmarks((prev) =>
+                prev.filter((bookmark) => bookmark.title !== article.title)
+              )
+            }
+            onClose={() => setShowBookmarksModal(false)}
+          />
+        )}
+
         <div className="my-blogs">My Blogs</div>
-        <NewsModal show={showModal} article={selectedArticle} onClose={()=> setShowModal(false)}></NewsModal>
+        <NewsModal
+          show={showModal}
+          article={selectedArticle}
+          onClose={() => setShowModal(false)}
+        />
         <div className="weather-calendar">
           <Weather />
           <Calendar />
-          <RadioPlayer></RadioPlayer>
+          <RadioPlayer />
         </div>
       </div>
 

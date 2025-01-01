@@ -1,18 +1,20 @@
-import React from 'react';
-import { FaLocationDot } from "react-icons/fa6";
+import React from "react";
 import { FaSearchLocation } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
 
 function Weather() {
   return (
-    <div className="search">
-      <div className="search-top">
-        <FaLocationDot></FaLocationDot>
-        <div className="location">Tbilisi</div>
-      </div>
+    <div className="weather">
+      <div className="search">
+        <div className="search-top">
+          <IoLocationSharp className="location-icon"></IoLocationSharp>
+          <div className="location">Tbilisi</div>
+        </div>
 
-      <div className="search-location">
-        <input type="text" placeholder="Enter location"></input>
-        <FaSearchLocation></FaSearchLocation>
+        <div className="search-location">
+          <input type="text" placeholder="Enter location" />
+          <FaSearchLocation className="icon-search" />
+        </div>
       </div>
 
       <div className="weather-data">
@@ -24,4 +26,4 @@ function Weather() {
   );
 }
 
-export default Weather
+export default Weather;

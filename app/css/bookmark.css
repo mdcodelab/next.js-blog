@@ -59,7 +59,7 @@ modal-overlay {
     cursor: pointer;
 }
 
-.bookmark-item h3 {
+.bookmark-item div h3 {
 font-family: "Comforta", sans-serif;
 font-size: 1.5rem;
 color: #fff;
@@ -71,6 +71,25 @@ font-weight: bold;
     color: #b88efc;
     cursor: pointer;
 }
+
+.read-more-link {
+    width: 15rem;
+    display: inline-block;
+    margin-top: 1rem;
+    background: linear-gradient(to right, #b88efc, #6877f4);
+    color: #fff;;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 5rem;
+    letter-spacing: 0.1rem;
+}
+
+.read-more-link:active {
+    transform: translateY(0.5rem);
+}
+
 
 
 

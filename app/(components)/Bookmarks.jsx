@@ -1,6 +1,5 @@
 import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import Image from "next/image";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 function Bookmarks({ bookmarks, onRemoveBookmark, onClose }) {
@@ -15,11 +14,9 @@ function Bookmarks({ bookmarks, onRemoveBookmark, onClose }) {
           <div className="bookmarks-list">
             {bookmarks.map((bookmark, index) => (
               <div key={index} className="bookmark-item">
-                <Image
+                <img
                   src={bookmark.image || "/images/default-news.jpg"}
                   alt={bookmark.title || "No title"}
-                  width={300}
-                  height={150}
                 />
                 <h3>{bookmark.title || "No title"}</h3>
                 <span

@@ -17,7 +17,7 @@ function News() {
   const [isLoading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("general");
 
-  const categories = ["general", "technology", "science", "health"];
+  const categories = ["general", "technology", "science", "health", "sports"];
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 

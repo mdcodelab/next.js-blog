@@ -32,6 +32,8 @@ function RadioPlayer() {
     return <div className="text-white">Loading...</div>;
   }
 
+  console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAAAA", data);
+
   if (data) {
     return (
       <div className="container-player">
@@ -51,9 +53,6 @@ function RadioPlayer() {
             </p>
             <p>
               <strong>Title:</strong> {data.title || "Unknown"}
-            </p>
-            <p>
-              <strong>Album:</strong> {data.album || "Unknown"}
             </p>
           </div>
         </div>

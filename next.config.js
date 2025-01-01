@@ -1,10 +1,13 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: [
       "media.cnn.com",
       "www.ft.com",
-      "d1e00ek4ebabms.cloudfront.net", // Adaugă și acest subdomeniu dacă apare în link
+      "deadline.com",
+      "dims.apnews.com",
+      "i.guim.co.uk", 
     ],
   },
 };

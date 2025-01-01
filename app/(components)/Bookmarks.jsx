@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";

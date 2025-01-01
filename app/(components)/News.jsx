@@ -26,7 +26,6 @@ function News() {
       try {
         setLoading(true);
 
-        // Construim URL-ul
         const url = searchQuery
           ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(
               searchQuery
@@ -35,7 +34,6 @@ function News() {
 
         const response = await axios.get(url);
 
-        // Actualizăm datele
         setHeadline(response.data.articles || []);
         setNews(response.data.articles?.slice(1, 5) || []);
       } catch (error) {
@@ -84,6 +82,13 @@ function News() {
   const [bookmarks, setBookmarks] = useState([]);
   const [showBookmarksModal, setShowBookmarksModal] = useState(false);
 
+  useEffect(() => {
+    const savedBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (savedBookmarks) {
+      setBookmarks(savedBookmarks);
+    }
+  }, []);
+
   const handleBookmarkClick = (article) => {
     setBookmarks((prevBookmarks) => {
       const isAlreadyBookmarked = prevBookmarks.some(
@@ -91,15 +96,25 @@ function News() {
       );
 
       if (isAlreadyBookmarked) {
-        // Eliminăm articolul din bookmark-uri
-        return prevBookmarks.filter(
+        const updatedBookmarks = prevBookmarks.filter(
           (bookmark) => bookmark.title !== article.title
         );
+        localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+        return updatedBookmarks;
       } else {
-        // Adăugăm articolul în bookmark-uri
-        return [...prevBookmarks, article];
+        const updatedBookmarks = [...prevBookmarks, article];
+        localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
+        return updatedBookmarks;
       }
     });
+  };
+
+  const handleRemoveBookmark = (article) => {
+    const updatedBookmarks = bookmarks.filter(
+      (bookmark) => bookmark.title !== article.title
+    );
+    setBookmarks(updatedBookmarks);
+    localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
   };
 
   return (
@@ -150,7 +165,7 @@ function News() {
                 }}
                 className="nav-link"
               >
-                Bookmark <IoBookmarksOutline className="icon" />
+                Bookmarks <IoBookmarksOutline className="icon" />
               </Link>
             </div>
           </div>
@@ -238,11 +253,7 @@ function News() {
         {showBookmarksModal && (
           <Bookmarks
             bookmarks={bookmarks}
-            onRemoveBookmark={(article) =>
-              setBookmarks((prev) =>
-                prev.filter((bookmark) => bookmark.title !== article.title)
-              )
-            }
+            onRemoveBookmark={handleRemoveBookmark}
             onClose={() => setShowBookmarksModal(false)}
           />
         )}

@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
 import RadioPlayer from "./RadioPlayer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { IoBookmarksOutline } from "react-icons/io5";
+import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
@@ -166,18 +165,28 @@ function News() {
             <img
               src={headline[0]?.image || "/images/default-headline.jpg"}
               alt={headline[0]?.title || "No headline"}
-              width={400}
-              height={200}
             />
             <h2 className="headline-title">
               {truncateText(headline[0]?.title, 20)}
-              <IoBookmarksOutline
-                className="bookmark"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleBookmarkClick(headline[0]);
-                }}
-              />
+              {bookmarks.some(
+                (bookmark) => bookmark.title === headline[0]?.title
+              ) ? (
+                <IoBookmarksSharp
+                  className="bookmark"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBookmarkClick(headline[0]);
+                  }}
+                />
+              ) : (
+                <IoBookmarksOutline
+                  className="bookmark"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBookmarkClick(headline[0]);
+                  }}
+                />
+              )}
             </h2>
           </div>
 
@@ -198,13 +207,25 @@ function News() {
                   />
                   <h3>
                     {truncateText(item.title, 20)}{" "}
-                    <IoBookmarksOutline
-                      className="bookmark"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleBookmarkClick(item);
-                      }}
-                    />
+                    {bookmarks.some(
+                      (bookmark) => bookmark.title === item.title
+                    ) ? (
+                      <IoBookmarksSharp
+                        className="bookmark"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBookmarkClick(item);
+                        }}
+                      />
+                    ) : (
+                      <IoBookmarksOutline
+                        className="bookmark"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBookmarkClick(item);
+                        }}
+                      />
+                    )}
                   </h3>
                 </div>
               ))

@@ -10,19 +10,19 @@ import "./css/bookmark.css";
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
   subsets: ["latin"],
-  weight: "400", 
+  weight: "400",
 });
 
 const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["latin"],
-  weight: ["300", "400", "700"], 
+  weight: ["300", "400", "700"],
 });
 
 const kanit = Kanit({
   variable: "--font-kanit",
   subsets: ["latin"],
-  weight: ["100", "400", "900"], 
+  weight: ["100", "400", "900"],
 });
 
 export const metadata = {
@@ -33,6 +33,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Link către fișierul CSS extern */}
+        <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={`${bebasNeue.variable} ${comfortaa.variable} ${kanit.variable} antialiased`}
       >

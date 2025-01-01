@@ -1,8 +1,16 @@
+"use client";
 import React from "react";
+import { useState, useEffect } from "react";
 import { FaSearchLocation } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 
 function Weather() {
+  const [data, setDate]=useState({});
+
+  const search = async () => {
+
+  }
+
   return (
     <div className="weather">
       <div className="search">
@@ -12,7 +20,7 @@ function Weather() {
         </div>
 
         <div className="search-location">
-          <input type="text" placeholder="Enter location" />
+          <input type="text" placeholder="Enter location" value={data} />
           <FaSearchLocation className="icon-search" />
         </div>
       </div>

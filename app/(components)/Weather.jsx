@@ -8,13 +8,21 @@ import axios from "axios";
 function Weather() {
   const [myData, setMyData] = useState({});
   const [location, setLocation] = useState("");
+  const [error, setError] = useState("");
 
   const search = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=627b30decf96c6628b5879ee45253ede&units=metric`;
-    const response = await axios.get(url);
-    console.log("Response:", response.data);
+    try {
+      const response = await axios.get(url);
+      console.log("Response:", response.data);
+      setMyData(response.data);
+      setError(""); 
+    } catch (err) {
+      console.error("Error:", err.message);
+      setError("Location not found. Please try again.");
+      setMyData({});
+    }
     setLocation("");
-    setMyData(response.data);
   };
 
   const handleInputChange = (e) => {
@@ -48,15 +56,15 @@ function Weather() {
         </div>
 
         <div className="search-location">
-          <input
-            type="text"
-            placeholder="Enter location"
-            value={location}
+          <input type="text" placeholder="Enter location" value={location} 
             onChange={handleInputChange}
           />
           <FaSearchLocation className="icon-search" onClick={search} />
         </div>
       </div>
+
+    
+      {error && <div className="error-message">{error}</div>}
 
       {myData.main && (
         <div className="weather-data">

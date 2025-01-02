@@ -73,13 +73,34 @@ row-gap: 1rem;
     font-size: 3.5rem;
 }
 
-.weather-data i.bxs {
-color: #ffc87c;
+.bx {
+color: #FFFF00;
+}
+
+.bxs-cloud {
+    color: #fff;
+}
+
+.bxs-cloud-rain {
+    color: #5fd1f9;
+}
+
+.bxs-cloud-lightening {
+    color: #154ebd;
+}
+
+.bxs-cloud-snow {
+    color: #52e5e7;
 }
 
 .weather-type, .temp {
     font-family: "Comforta", sans-serif;
     font-size: 1.5rem;
     color: #ddd;
+}
+
+.error-message {
+    font-size: 1.5rem;
+    color: red;
 }
 

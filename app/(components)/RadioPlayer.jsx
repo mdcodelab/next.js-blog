@@ -44,7 +44,6 @@ function RadioPlayer() {
           Your browser does not support the audio element.
         </audio>
         <div className="div-now-playing">
-          <h2>Now Playing:</h2>
           <div>
             <p>
               <strong>Artist:</strong> {data.artist || "Unknown"}

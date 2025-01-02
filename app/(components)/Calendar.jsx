@@ -6,27 +6,27 @@ function Calendar() {
       <div className="navigate-date">
         <h2 className="month">July</h2>
         <h2 className="year">2025</h2>
-        <div className="button">
+        <div className="buttons">
           <i class="bx bx-chevron-left"></i>
           <i class="bx bx-chevron-right"></i>
         </div>
       </div>
 
       <div className="weekdays">
-        <span>Sunday</span>
-        <span>Monday</span>
-        <span>Tuesday</span>
-        <span>Wednesday</span>
-        <span>Thursday</span>
-        <span>Friday</span>
-        <span>Saturday</span>
+        <span>Sun</span>
+        <span>Mon</span>
+        <span>Tues</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
       </div>
       <div className="days">
         <span>1</span>
         <span>2</span>
         <span>3</span>
         <span>4</span>
-        <span>5</span>
+        <span className="current-day">5</span>
         <span>6</span>
         <span>7</span>
         <span>8</span>

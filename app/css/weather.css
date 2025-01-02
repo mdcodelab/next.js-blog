@@ -4,18 +4,16 @@
     height: 30%;
     background-color: #111214;
     border-radius: 1rem;
-    padding: 2rem 1.5rem;
+    padding: 0rem 1rem;
     display: flex;
     flex-direction:column;
     align-items: center;
     justify-content: center;
-    row-gap: 1rem;
 }
 
 .search {
 display: flex;
 flex-direction: column;
-row-gap: 1rem;
 }
 
 .search-top {
@@ -38,6 +36,7 @@ row-gap: 1rem;
 
 .search-location {
     position: relative;
+    padding-bottom: 1rem;
 }
 
 .search-location input {

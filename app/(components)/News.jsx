@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
-import RadioPlayer from "./RadioPlayer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import Link from "next/link";
@@ -267,7 +266,6 @@ function News() {
         <div className="weather-calendar">
           <Weather />
           <Calendar />
-          <RadioPlayer />
         </div>
       </div>
 

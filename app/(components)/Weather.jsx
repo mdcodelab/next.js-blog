@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSearchLocation } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import axios from "axios";
@@ -16,7 +15,7 @@ function Weather() {
       const response = await axios.get(url);
       console.log("Response:", response.data);
       setMyData(response.data);
-      setError(""); 
+      setError("");
     } catch (err) {
       console.error("Error:", err.message);
       setError("Location not found. Please try again.");
@@ -47,23 +46,46 @@ function Weather() {
     return weatherIcons[weatherType] || weatherIcons.Default;
   };
 
+  // Locația implicită
+  useEffect(() => {
+    const fetchDefaultLocation = async () => {
+      try {
+        const defaultLocation = "Iasi";
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&appid=627b30decf96c6628b5879ee45253ede&units=metric`;
+        const response = await axios.get(url);
+        console.log("Default location response:", response.data);
+        setMyData(response.data);
+      } catch (err) {
+        console.error("Error fetching default location:", err.message);
+        setError("Failed to load default location.");
+      }
+    };
+
+    if (!myData.main) {
+      fetchDefaultLocation();
+    }
+  }, [myData.main]);
+
   return (
     <div className="weather">
       <div className="search">
         <div className="search-top">
           <IoLocationSharp className="location-icon"></IoLocationSharp>
-          <div className="location">{myData?.name}</div>
+          <div className="location">{myData?.name || "Enter a location"}</div>
         </div>
 
         <div className="search-location">
-          <input type="text" placeholder="Enter location" value={location} 
+          <input
+            type="text"
+            placeholder="Enter location"
+            value={location}
             onChange={handleInputChange}
           />
           <FaSearchLocation className="icon-search" onClick={search} />
         </div>
       </div>
 
-    
+      {/* Afișează mesajul de eroare, dacă există */}
       {error && <div className="error-message">{error}</div>}
 
       {myData.main && (

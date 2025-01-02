@@ -28,6 +28,12 @@ function Weather() {
     setLocation(e.target.value);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      search();
+    }
+  };
+
   const capitalizeFirstLetter = (string) => {
     if (!string) return "";
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -80,6 +86,7 @@ function Weather() {
             placeholder="Enter location"
             value={location}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <FaSearchLocation className="icon-search" onClick={search} />
         </div>

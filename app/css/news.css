@@ -258,4 +258,22 @@ font-weight: 300;
     min-height: 5rem;
     background-color: #111214;
     border-radius: 0rem 0rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
 }
+
+.news-footer p {
+    font-size: 1.4rem;
+    color: #bbb;
+    font-weight: 300;
+}
+
+.news-footer span {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2rem;
+}
+
+
+

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Weather from "./Weather";
 import Calendar from "./Calendar";
+import Footer from "./Footer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
 import Link from "next/link";
@@ -271,7 +272,7 @@ function News() {
 
       {/* Footer Section */}
       <footer className="news-footer">
-        <p>Footer Content</p>
+        <Footer></Footer>
       </footer>
     </div>
   );

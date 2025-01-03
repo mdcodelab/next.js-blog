@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Blogs() {
   return (
@@ -17,7 +17,7 @@ function Blogs() {
             <i className="bx bx-upload"></i> Upload Image</label>
             <input type="file" id="file-upload"></input>
           </div>
-          <input type="text" placeholder="Add title...(max 60 characters)" className="title-input"></input>
+          <input type="text" placeholder="Add title (max 60 characters)" className="title-input"></input>
           <textarea className="text-input" placeholder="Add text..."></textarea>
           <button type="submit" className="submit-btn">Submit</button>
         </form>

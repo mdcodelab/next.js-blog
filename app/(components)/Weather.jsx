@@ -13,7 +13,6 @@ function Weather() {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=627b30decf96c6628b5879ee45253ede&units=metric`;
     try {
       const response = await axios.get(url);
-      console.log("Response:", response.data);
       setMyData(response.data);
       setError("");
     } catch (err) {
@@ -59,7 +58,6 @@ function Weather() {
         const defaultLocation = "Iasi";
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&appid=627b30decf96c6628b5879ee45253ede&units=metric`;
         const response = await axios.get(url);
-        console.log("Default location response:", response.data);
         setMyData(response.data);
       } catch (err) {
         console.error("Error fetching default location:", err.message);

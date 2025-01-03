@@ -1,12 +1,12 @@
 import React from 'react'
-
-import News from './(components)/News'
-import RadioPlayer from './(components)/RadioPlayer'
+import News from './(components)/News';
+import Blogs from "./(components)/Blogs";
 function Home() {
   return (
     <div className="container">
-        <div className="news-blog-app">
-          <News></News>
+        <div className="news-blogs-app">
+          {/* <News></News> */}
+          <Blogs></Blogs>
         </div>
     </div>
   )

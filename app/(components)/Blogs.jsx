@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Blogs() {
+function Blogs({onShowNews}) {
   return (
     <div className="blogs">
 
@@ -23,7 +23,7 @@ function Blogs() {
         </form>
       </div>
         {/* <button className="post-btn">Create New Post</button> */}
-        <button className="blogs-close-btn">Back <i className="bx bx-chevron-right"></i></button>
+        <button className="blogs-close-btn">Back <i className="bx bx-chevron-right" onClick={onShowNews}></i></button>
       </div>
     </div>
   )

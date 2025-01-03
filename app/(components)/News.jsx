@@ -10,7 +10,7 @@ import axios from "axios";
 import NewsModal from "./NewsModal";
 import Bookmarks from "./Bookmarks";
 
-function News() {
+function News({onShowBlogs}) {
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -140,7 +140,7 @@ function News() {
       {/* Content Section */}
       <div className="news-content">
         <nav className="navbar">
-          <div className="user">
+          <div className="user" onClick={onShowBlogs}>
             <img src="/images/me.jpg" alt="user" />
             <p>Mihaela's Blog</p>
           </div>

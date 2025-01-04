@@ -8,6 +8,7 @@ function Home() {
 
   const [showNews, setShowNews]=useState(true);
   const [showBlogs, setShowBlogs] = useState(false);
+  const [blogs, setBlogs]=useState([]);
 
   const handleShowBlogs = () => {
     setShowNews(false);
@@ -19,11 +20,15 @@ function Home() {
      setShowBlogs(false);
    };
 
+   const handleCreateBlog = (newBlog) => {
+    setBlogs(prevState => [...prevState, newBlog]);
+   }
+
   return (
     <div className="container">
       <div className="news-blogs-app">
         {showNews && <News onShowBlogs={handleShowBlogs}></News>}
-        {showBlogs && (<Blogs onShowNews={handleBackToNews}></Blogs>)}
+        {showBlogs && (<Blogs blogs={blogs} onCreateBlogProp={handleCreateBlog} onShowNews={handleBackToNews}></Blogs>)}
       </div>
     </div>
   );

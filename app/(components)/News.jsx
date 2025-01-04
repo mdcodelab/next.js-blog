@@ -11,7 +11,7 @@ import axios from "axios";
 import NewsModal from "./NewsModal";
 import Bookmarks from "./Bookmarks";
 
-function News({onShowBlogs}) {
+function News({onShowBlogs, blogs}) {
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -20,6 +20,8 @@ function News({onShowBlogs}) {
   const categories = ["general", "technology", "science", "health", "sports"];
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
+  console.log("Blogssssssssssssssssssssssssssss", blogs);
 
   // Fetch News
   useEffect(() => {
@@ -262,34 +264,19 @@ function News({onShowBlogs}) {
         <div className="my-blogs">
           <h1 className="my-blogs-heading">My Blogs</h1>
           <div className="blog-posts">
-            <div className="blog-post">
-              <img src="/images/blog1.jpg" alt="post image"></img>
-              <h3>Lorem ipsum dolor sit amet.</h3>
-              <div className="post-buttons">
-                <button className="edit-post"><i className="bx bxs-edit"></i></button>
+            {blogs?.map((blog, index) => {
+              return (<div className="blog-post" key={index}>
+                <img src={blog.image} alt={blog.title}></img>
+                <h3>{blog.title}</h3>
+                <p>{blog.content}</p>
+                <div className="post-buttons">
+                  <button className="edit-post"><i className="bx bxs-edit"></i></button>
                  <button className="delete-post"><i className="bx bx-x-circle"></i></button>
                  <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
-              </div>
-            </div>
-            <div className="blog-post">
-              <img src="/images/blog2.jpg" alt="post image"></img>
-              <h3>Lorem ipsum dolor sit amet.</h3>
-              <div className="post-buttons">
-                <button className="edit-post"><i className="bx bxs-edit"></i></button>
-                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
-                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
-              </div>
-            </div>
-            <div className="blog-post">
-              <img src="/images/blog3.jpg" alt="post image"></img>
-              <h3>Lorem ipsum dolor sit amet.</h3>
-              <div className="post-buttons">
-                <button className="edit-post"><i className="bx bxs-edit"></i></button>
-                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
-                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
-              </div>
-            </div>
-        
+                </div>
+              </div>)
+
+            })}
           </div>
         </div>
 

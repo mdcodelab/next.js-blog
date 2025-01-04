@@ -5,6 +5,7 @@ import Calendar from "./Calendar";
 import Footer from "./Footer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
+import { RxDoubleArrowRight } from "react-icons/rx";
 import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
@@ -259,7 +260,7 @@ function News({onShowBlogs}) {
         )}
 
         <div className="my-blogs">
-          <h1 className="my-blog-heading">My Blogs</h1>
+          <h1 className="my-blogs-heading">My Blogs</h1>
           <div className="blog-posts">
             <div className="blog-post">
               <img src="/images/blog1.jpg" alt="post image"></img>
@@ -267,6 +268,7 @@ function News({onShowBlogs}) {
               <div className="post-buttons">
                 <button className="edit-post"><i className="bx bxs-edit"></i></button>
                  <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
               </div>
             </div>
             <div className="blog-post">
@@ -275,6 +277,7 @@ function News({onShowBlogs}) {
               <div className="post-buttons">
                 <button className="edit-post"><i className="bx bxs-edit"></i></button>
                  <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
               </div>
             </div>
             <div className="blog-post">
@@ -283,16 +286,10 @@ function News({onShowBlogs}) {
               <div className="post-buttons">
                 <button className="edit-post"><i className="bx bxs-edit"></i></button>
                  <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
               </div>
             </div>
-            <div className="blog-post">
-              <img src="/images/blog4.jpg" alt="post image"></img>
-              <h3>Lorem ipsum dolor sit amet.</h3>
-              <div className="post-buttons">
-                <button className="edit-post"><i className="bx bxs-edit"></i></button>
-                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
-              </div>
-            </div>
+        
           </div>
         </div>
 

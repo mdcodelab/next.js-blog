@@ -1,6 +1,6 @@
 .calendar {
     width: 100%;
-    min-width: 28rem;
+    min-width: 30rem;
     height: 100%;
     background-color: #111214;
     border-radius: 1rem;
@@ -21,6 +21,7 @@
 
 .navigate-date h2 {
     font-size: 2rem;
+    padding-left: 3.5rem;
 }
 
 .buttons {
@@ -45,7 +46,6 @@
 .weekdays {
     width: 100%;
     display: flex;
-    margin: 0.1rem 0;
 }
 
 .weekdays span {

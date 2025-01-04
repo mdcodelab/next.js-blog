@@ -42,7 +42,10 @@ export const BlogProvider = ({ children }) => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      const newBlog = {image, title, content};
+      const newBlog = {
+        image: image || "/images/no-img.png",
+        title, 
+        content};
       console.log("New blogggggggggggggggggggg:", newBlog);
       setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
       setImage(null);

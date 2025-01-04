@@ -10,8 +10,11 @@ import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
 import Bookmarks from "./Bookmarks";
+import { useBlogContext } from "../blogContext";
 
 function News({onShowBlogs, blogs}) {
+  const { handleShowBlogs } = useBlogContext();
+  
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -143,7 +146,7 @@ function News({onShowBlogs, blogs}) {
       {/* Content Section */}
       <div className="news-content">
         <nav className="navbar">
-          <div className="user" onClick={onShowBlogs}>
+          <div className="user" onClick={handleShowBlogs}>
             <img src="/images/me.jpg" alt="user" />
             <p>Mihaela's Blog</p>
           </div>

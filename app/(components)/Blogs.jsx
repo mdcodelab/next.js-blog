@@ -1,8 +1,11 @@
 "use client";
 import React from 'react';
 import { useState } from 'react';
+import { useBlogContext } from '../blogContext';
 
 function Blogs({onShowNews, onCreateBlogProp}) {
+  const { handleBackToNews } = useBlogContext();
+
   const [showForm, setShowForm]=useState(false);
   //for new blogs
   const [image, setImage]=useState(null);
@@ -62,7 +65,7 @@ function Blogs({onShowNews, onCreateBlogProp}) {
 
       
         <button className="blogs-close-btn">
-          Back <i className="bx bx-chevron-right" onClick={onShowNews}></i>
+          Back <i className="bx bx-chevron-right" onClick={handleBackToNews}></i>
         </button>
       </div>
     </div>

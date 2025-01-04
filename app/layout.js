@@ -7,7 +7,7 @@ import "./css/player.css";
 import "./css/newsModal.css";
 import "./css/bookmark.css";
 import "./css/blogs.css";
-
+import { BlogProvider } from "./blogContext";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
@@ -42,11 +42,13 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${bebasNeue.variable} ${comfortaa.variable} ${kanit.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <BlogProvider>
+        <body
+          className={`${bebasNeue.variable} ${comfortaa.variable} ${kanit.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </BlogProvider>
     </html>
   );
 }

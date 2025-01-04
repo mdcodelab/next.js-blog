@@ -44,16 +44,11 @@ export const BlogProvider = ({ children }) => {
       e.preventDefault();
       const newBlog = {image, title, content};
       console.log("New blogggggggggggggggggggg:", newBlog);
-      onCreateBlogProp(newBlog);
+      setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
       setImage(null);
       setTitle("");
       setContent("");
       setShowForm(false);
-    }
-
-    //createNewBlog
-    const createNewBlog = (newBlog) => {
-      setBlogs((prevState)=> [...prevBlogs, newBlog]);
     }
 
   return (

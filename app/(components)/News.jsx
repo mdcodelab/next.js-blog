@@ -12,8 +12,8 @@ import NewsModal from "./NewsModal";
 import Bookmarks from "./Bookmarks";
 import { useBlogContext } from "../blogContext";
 
-function News({onShowBlogs, blogs}) {
-  const { handleShowBlogs } = useBlogContext();
+function News() {
+  const { handleShowBlogs, blogs } = useBlogContext();
   
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);

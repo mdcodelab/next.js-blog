@@ -3,35 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useBlogContext } from '../blogContext';
 
-function Blogs({onShowNews, onCreateBlogProp}) {
-  const { handleBackToNews } = useBlogContext();
-
-  const [showForm, setShowForm]=useState(false);
-  //for new blogs
-  const [image, setImage]=useState(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
-  const handleChangeImage = (e) => {
-    if(e.target.files &&e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImage(reader.result);
-      }
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newBlog = {image, title, content};
-    console.log("New blogggggggggggggggggggg:", newBlog);
-    onCreateBlogProp(newBlog);
-    setImage(null);
-    setTitle("");
-    setContent("");
-    setShowForm(false);
-  }
+function Blogs() {
+  const { handleBackToNews, handleSubmit, setShowForm, showForm, title, image, setImage, setTitle,
+     content, setContent, handleChangeImage} = useBlogContext();
 
   return (
     <div className="blogs">

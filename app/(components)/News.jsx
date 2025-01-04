@@ -258,7 +258,44 @@ function News({onShowBlogs}) {
           />
         )}
 
-        <div className="my-blogs">My Blogs</div>
+        <div className="my-blogs">
+          <h1 className="my-blog-heading">My Blogs</h1>
+          <div className="blog-posts">
+            <div className="blog-post">
+              <img src="/images/blog1.jpg" alt="post image"></img>
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <div className="post-buttons">
+                <button className="edit-post"><i className="bx bxs-edit"></i></button>
+                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+              </div>
+            </div>
+            <div className="blog-post">
+              <img src="/images/blog2.jpg" alt="post image"></img>
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <div className="post-buttons">
+                <button className="edit-post"><i className="bx bxs-edit"></i></button>
+                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+              </div>
+            </div>
+            <div className="blog-post">
+              <img src="/images/blog3.jpg" alt="post image"></img>
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <div className="post-buttons">
+                <button className="edit-post"><i className="bx bxs-edit"></i></button>
+                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+              </div>
+            </div>
+            <div className="blog-post">
+              <img src="/images/blog4.jpg" alt="post image"></img>
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <div className="post-buttons">
+                <button className="edit-post"><i className="bx bxs-edit"></i></button>
+                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <NewsModal
           show={showModal}
           article={selectedArticle}

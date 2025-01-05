@@ -1,12 +1,12 @@
 "use client";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 
 export const BlogContext = createContext();
 
 export const BlogProvider = ({ children }) => {
   //switch between News - Blogs
   const [showBlogs, setShowBlogs] = useState(false);
-  const [showForm, setShowForm]=useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [showNews, setShowNews] = useState(true);
 
   const handleShowBlogs = () => {
@@ -19,50 +19,67 @@ export const BlogProvider = ({ children }) => {
     setShowBlogs(false);
   };
 
+  // from the form to create a new blog
+  const [image, setImage] = useState(null);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const[submitted, setSubmitted] = useState(false);
+  // blogs
+  const [newBlog, setNewBlog] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
-    //from the  to create a new blog
-  const [image, setImage]=useState(null);
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    //blogs
-    const [newBlog, setNewBlog]=useState(null);
-    const [blogs, setBlogs]=useState([]);
-
-
-    //functions for the form
-    const handleChangeImage = (e) => {
-      if(e.target.files &&e.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setImage(reader.result);
-        }
-        reader.readAsDataURL(e.target.files[0]);
-      }
+  // functions for the form
+  const handleChangeImage = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const newBlog = {
-        image: image || "/images/no-img.png",
-        title, 
-        content};
-      console.log("New blogggggggggggggggggggg:", newBlog);
-      setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
-      setImage(null);
-      setTitle("");
-      setContent("");
-      setShowForm(false);
-    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newBlog = {
+      image: image || "/images/no-img.png",
+      title,
+      content,
+    };
+    console.log("New blog created:", newBlog);
+    setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
+    setImage(null);
+    setTitle("");
+    setContent("");
+    setShowForm(false);
+    setSubmitted(true);
+    console.log("Submitted set to true");
+    setTimeout(() => {
+      setSubmitted(false);
+      console.log("Message hiddennnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+    }, 3000);
+  };
 
   return (
     <BlogContext.Provider
       value={{
-        blogs, newBlog, handleBackToNews, handleShowBlogs,
+        blogs,
+        newBlog,
+        handleBackToNews,
+        handleShowBlogs,
         handleChangeImage,
         handleSubmit,
-        image, setImage, title, setTitle, content, setContent,
-        showForm, setShowForm, showNews, showBlogs,
-        blogs
+        image,
+        setImage,
+        title,
+        setTitle,
+        content,
+        setContent,
+        showForm,
+        setShowForm,
+        showNews,
+        showBlogs,
+        submitted
       }}
     >
       {children}

@@ -15,7 +15,6 @@
     position: relative;
 }
 
-
 .blogs-left img {
     width: 15rem;
     aspect-ratio: 1;
@@ -37,10 +36,22 @@
     position: relative;
 }
 
-.blogs-right-form {
+.blogs-right-form.visible {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.submission-message {
+    font-size: 5rem;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #b88efc, #6677f4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .blogs-right-form h1 {

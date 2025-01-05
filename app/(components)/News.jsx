@@ -11,6 +11,7 @@ import axios from "axios";
 import NewsModal from "./NewsModal";
 import Bookmarks from "./Bookmarks";
 import { useBlogContext } from "../blogContext";
+import BlogsModal from "./BlogsModal";
 
 function News() {
   const { handleShowBlogs, blogs } = useBlogContext();
@@ -268,19 +269,27 @@ function News() {
           <h1 className="my-blogs-heading">My Blogs</h1>
           <div className="blog-posts">
             {blogs?.map((blog, index) => {
-              return (<div className="blog-post" key={index}>
-                <img src={blog.image} alt={blog.title}></img>
-                <h3>{blog.title}</h3>
-                
-                <div className="post-buttons">
-                  <button className="edit-post"><i className="bx bxs-edit"></i></button>
-                 <button className="delete-post"><i className="bx bx-x-circle"></i></button>
-                 <button className="more-post"><RxDoubleArrowRight></RxDoubleArrowRight></button>
-                </div>
-              </div>)
+              return (
+                <div className="blog-post" key={index}>
+                  <img src={blog.image} alt={blog.title}></img>
+                  <h3>{blog.title}</h3>
 
+                  <div className="post-buttons">
+                    <button className="edit-post">
+                      <i className="bx bxs-edit"></i>
+                    </button>
+                    <button className="delete-post">
+                      <i className="bx bx-x-circle"></i>
+                    </button>
+                    <button className="more-post">
+                      <RxDoubleArrowRight></RxDoubleArrowRight>
+                    </button>
+                  </div>
+                </div>
+              );
             })}
           </div>
+          <BlogsModal></BlogsModal>
         </div>
 
         <NewsModal

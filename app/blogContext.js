@@ -101,8 +101,40 @@ export const BlogProvider = ({ children }) => {
 
   useEffect(()=> {
     const savedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
-    setBlogs(savedBlogs); // Setează blogurile din localStorage
+    setBlogs(savedBlogs);
   }, []);
+
+  //for deleted and updated blogs
+  const [selectedPost, setSelectedPost]=useState(null);
+  const [isEditing, setIsEditing]=useState(false);
+
+  const handleEditBlog = (updatedBlog) => {
+    setBlogs((prevBlogs) => {
+      const updatedBlogs = prevBlogs.map((blog) =>
+        blog.title === selectedPost.title ? { ...blog, ...updatedBlog } : blog
+      );
+      localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+      return updatedBlogs;
+    });
+
+    setSelectedPost(null);
+    setIsEditing(false);
+  };
+
+  //delete post
+  const deletePost = (blog) => {
+    const confirmation = window.confirm(
+      `Are you sure you want to delete the post titled "${blog.title}"?`
+    );
+    if (confirmation) {
+      const updatedBlogs = blogs.filter((post) => post.title !== blog.title);
+      setBlogs(updatedBlogs);
+      localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+    }
+  };
+
+
+
 
   return (
     <BlogContext.Provider
@@ -126,7 +158,11 @@ export const BlogProvider = ({ children }) => {
         handleTitleChange,
         handleContentChange,
         titleValid,
-        contentValid
+        contentValid,
+        handleEditBlog,
+        deletePost
+        
+      
       }}
     >
       {children}

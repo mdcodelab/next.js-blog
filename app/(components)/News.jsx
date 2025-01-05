@@ -5,6 +5,7 @@ import Calendar from "./Calendar";
 import Footer from "./Footer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
@@ -13,7 +14,7 @@ import { useBlogContext } from "../blogContext";
 import BlogsModal from "./BlogsModal";
 
 function News() {
-  const { handleShowBlogs, blogs } = useBlogContext();
+  const { handleShowBlogs, blogs, handleEditBlog, deletePost} = useBlogContext();
 
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
@@ -136,6 +137,14 @@ function News() {
     setShowBlogModal(false);
     setSelectedPost(null);
   }
+
+  //editing button
+  const handleEditClick = (blog) => {
+    setSelectedPost(blog);
+    setShowBlogModal(true);
+    setIsEditing(true);
+  };
+
 
   return (
     <div className="news">
@@ -283,16 +292,22 @@ function News() {
           <div className="blog-posts">
             {blogs?.map((blog, index) => {
               return (
-                <div className="blog-post" key={index} onClick={()=> handleBlogClick(blog)} style={{cursor: "pointer"}}>
+                <div className="blog-post" key={index}>
                   <img src={blog?.image} alt={blog.title}></img>
                   <h3>{blog?.title}</h3>
 
                   <div className="post-buttons">
                     <button className="edit-post">
-                      <i className="bx bxs-edit"></i>
+                      <i className="bx bxs-edit" onClick={()=> handleEditClick(blog)}></i>
                     </button>
                     <button className="delete-post">
-                      <i className="bx bx-x-circle"></i>
+                      <i className="bx bx-x-circle" onClick={(e)=>{
+                      e.stopPropagation()
+                      deletePost(blog)
+                      }}></i>
+                    </button>
+                    <button className="delete-post view-post">
+                      <MdKeyboardDoubleArrowRight onClick={()=> handleBlogClick(blog)} style={{cursor: "pointer"}}></MdKeyboardDoubleArrowRight>
                     </button>
                   </div>
                 </div>

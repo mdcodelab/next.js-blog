@@ -7,6 +7,7 @@ import "./css/player.css";
 import "./css/newsModal.css";
 import "./css/bookmark.css";
 import "./css/blogs.css";
+import "./css/blogsModal.css";
 import { BlogProvider } from "./blogContext";
 
 const bebasNeue = Bebas_Neue({

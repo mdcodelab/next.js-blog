@@ -24,6 +24,9 @@ export const BlogProvider = ({ children }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const[submitted, setSubmitted] = useState(false);
+  //form validation
+  const [titleValid, setTitleValid]=useState(true);
+  const [contentValid, setContentValid]=useState(true);
   // blogs
   const [newBlog, setNewBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
@@ -39,8 +42,26 @@ export const BlogProvider = ({ children }) => {
     }
   };
 
+  const handleTitleChange = (e) => {
+    if(e.target.value.length <= 25) {
+      setTitle(e.target.value);
+      setTitleValid(true);
+    }
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+    setContentValid(true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!title || !content) {
+      if(!title) setTitleValid(false);
+      if(!content) setContentValid(false);
+      return;
+    };
+
     const newBlog = {
       image: image || "/images/no-img.png",
       title,
@@ -56,7 +77,6 @@ export const BlogProvider = ({ children }) => {
     console.log("Submitted set to true");
     setTimeout(() => {
       setSubmitted(false);
-      console.log("Message hiddennnnnnnnnnnnnnnnnnnnnnnnnnnnn");
     }, 3000);
   };
 
@@ -69,7 +89,6 @@ export const BlogProvider = ({ children }) => {
         handleShowBlogs,
         handleChangeImage,
         handleSubmit,
-        image,
         setImage,
         title,
         setTitle,
@@ -79,7 +98,11 @@ export const BlogProvider = ({ children }) => {
         setShowForm,
         showNews,
         showBlogs,
-        submitted
+        submitted,
+        handleTitleChange,
+        handleContentChange,
+        titleValid,
+        contentValid
       }}
     >
       {children}

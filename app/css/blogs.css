@@ -88,6 +88,7 @@
     display: none;
 }
 
+
 .title-input, .text-input {
     width: clamp(15rem, 25cqi, 45rem);
     background: transparent;
@@ -106,6 +107,19 @@
     aspect-ratio: 6/3;
     font-size: 1.5rem;
     resize: none;
+}
+
+.title-input.invalid {
+border-bottom: 1rem solid #c41438;
+}
+
+.text-input.invalid {
+    border-bottom: 1rem solid #c41438;
+    }
+
+.title-input::placeholder,
+.text-input.invalid::placeholder {
+color: #c41438;
 }
 
 .title-input::placeholder, .text-input::placeholder {

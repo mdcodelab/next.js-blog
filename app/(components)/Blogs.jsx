@@ -4,8 +4,9 @@ import { useBlogContext } from '../blogContext';
 
 
 function Blogs() {
-  const { handleBackToNews, handleSubmit, setShowForm, showForm, title, image, setImage, setTitle,
-     content, setContent, handleChangeImage, submitted} = useBlogContext();
+  const { handleBackToNews, handleSubmit, setShowForm, showForm, title, setTitle, image, setImage,
+     content, setContent, handleChangeImage, submitted, handleTitleChange, handleContentChange,
+    titleValid, contentValid} = useBlogContext();
 
   return (
     <div className="blogs">
@@ -27,28 +28,14 @@ function Blogs() {
               <label htmlFor="file-upload" className="file-upload">
                 <i className="bx bx-upload"></i> Upload Image
               </label>
-              <input
-                type="file"
-                id="file-upload"
-                onChange={handleChangeImage}
-              ></input>
+              <input type="file" id="file-upload" onChange={handleChangeImage}></input>
             </div>
-            <input
-              type="text"
-              placeholder="Add title (max 60 characters)"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="title-input"
-            ></input>
-            <textarea
-              className="text-input"
-              placeholder="Add text..."
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            ></textarea>
-            <button type="submit" className="submit-btn">
-              Submit
-            </button>
+            <input type="text" placeholder="Add title (max 25 characters)" value={title}
+              onChange={handleTitleChange}
+              className={`title-input ${!titleValid ? "invalid" : ""}`}></input>
+            <textarea className={`text-input ${!contentValid ? "invalid" : ""}`} placeholder="Add text..." value={content}
+              onChange={handleContentChange}></textarea>
+            <button type="submit" className="submit-btn">Submit</button>
           </form>
         </div>
 

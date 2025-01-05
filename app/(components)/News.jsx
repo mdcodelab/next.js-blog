@@ -5,7 +5,6 @@ import Calendar from "./Calendar";
 import Footer from "./Footer";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoBookmarksOutline, IoBookmarksSharp } from "react-icons/io5";
-import { RxDoubleArrowRight } from "react-icons/rx";
 import Link from "next/link";
 import axios from "axios";
 import NewsModal from "./NewsModal";
@@ -15,7 +14,7 @@ import BlogsModal from "./BlogsModal";
 
 function News() {
   const { handleShowBlogs, blogs } = useBlogContext();
-  
+
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -123,6 +122,20 @@ function News() {
     setBookmarks(updatedBookmarks);
     localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
   };
+
+  //blogs modal
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [showBlogModal, setShowBlogModal] = useState(false);
+
+  const handleBlogClick = (blog) => {
+    setSelectedPost(blog);
+    setShowBlogModal(true);
+  }
+
+  const closeBlogModal = (blog) => {
+    setShowBlogModal(false);
+    setSelectedPost(null);
+  }
 
   return (
     <div className="news">
@@ -270,9 +283,9 @@ function News() {
           <div className="blog-posts">
             {blogs?.map((blog, index) => {
               return (
-                <div className="blog-post" key={index}>
-                  <img src={blog.image} alt={blog.title}></img>
-                  <h3>{blog.title}</h3>
+                <div className="blog-post" key={index} onClick={()=> handleBlogClick(blog)} style={{cursor: "pointer"}}>
+                  <img src={blog?.image} alt={blog.title}></img>
+                  <h3>{blog?.title}</h3>
 
                   <div className="post-buttons">
                     <button className="edit-post">
@@ -281,15 +294,13 @@ function News() {
                     <button className="delete-post">
                       <i className="bx bx-x-circle"></i>
                     </button>
-                    <button className="more-post">
-                      <RxDoubleArrowRight></RxDoubleArrowRight>
-                    </button>
                   </div>
                 </div>
               );
             })}
           </div>
-          <BlogsModal></BlogsModal>
+          {selectedPost && showBlogModal && 
+          <BlogsModal show={showBlogModal} blog={selectedPost}  onClose={closeBlogModal}></BlogsModal>}
         </div>
 
         <NewsModal

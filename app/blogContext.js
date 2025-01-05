@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const BlogContext = createContext();
 
@@ -56,29 +56,47 @@ export const BlogProvider = ({ children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!title || !content) {
-      if(!title) setTitleValid(false);
-      if(!content) setContentValid(false);
-      return;
-    };
 
+    // Validare titlu și conținut
+    if (!title || !content) {
+      if (!title) setTitleValid(false);
+      if (!content) setContentValid(false);
+      return;
+    }
+    // Crearea unui nou blog
     const newBlog = {
       image: image || "/images/no-img.png",
       title,
       content,
     };
+
     console.log("New blog created:", newBlog);
-    setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
+
+    // Actualizarea stării blogurilor și salvarea în localStorage
+    setBlogs((prevBlogs) => {
+      const updatedBlogs = [...prevBlogs, newBlog];
+      localStorage.setItem("blogs", JSON.stringify(updatedBlogs)); // Salvare în localStorage
+      return updatedBlogs; // Actualizare stare
+    });
+
+    // Resetarea câmpurilor
     setImage(null);
     setTitle("");
     setContent("");
     setShowForm(false);
     setSubmitted(true);
     console.log("Submitted set to true");
+
+    // Resetare mesaj de succes după 3 secunde
     setTimeout(() => {
       setSubmitted(false);
     }, 3000);
   };
+
+  useEffect(()=> {
+    const savedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    setBlogs(savedBlogs); // Setează blogurile din localStorage
+  }, []);
 
   return (
     <BlogContext.Provider

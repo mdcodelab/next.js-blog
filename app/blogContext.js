@@ -33,12 +33,18 @@ export const BlogProvider = ({ children }) => {
 
   // functions for the form
   const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    const maxSize = 1 *1024*1024;
+    if(file.size > maxSize) {
+      alert("File size exceeds 1 MB");
+      return;
+    } 
     if (e.target.files && e.target.files[0]) {
       const reader = new FileReader();
       reader.onload = () => {
         setImage(reader.result);
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 

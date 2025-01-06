@@ -1,9 +1,11 @@
 {
+  "type": "module",
   "dependencies": {
     "concurrently": "^9.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "helmet": "^8.0.0",
     "mongoose": "^8.9.3",
     "morgan": "^1.10.0"
   }

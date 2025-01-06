@@ -14,7 +14,7 @@ import { useBlogContext } from "../blogContext";
 import BlogsModal from "./BlogsModal";
 
 function News() {
-  const { handleShowBlogs, blogs, handleEditBlog, deletePost} = useBlogContext();
+  const { handleShowBlogs, blogs, deletePost, handleEdit} = useBlogContext();
 
   const [headline, setHeadline] = useState([]);
   const [news, setNews] = useState([]);
@@ -137,13 +137,6 @@ function News() {
     setShowBlogModal(false);
     setSelectedPost(null);
   }
-
-  //editing button
-  const handleEditClick = (blog) => {
-    setSelectedPost(blog);
-    setShowBlogModal(true);
-    setIsEditing(true);
-  };
 
 
   return (
@@ -298,7 +291,7 @@ function News() {
 
                   <div className="post-buttons">
                     <button className="edit-post">
-                      <i className="bx bxs-edit" onClick={()=> handleEditClick(blog)}></i>
+                      <i className="bx bxs-edit" onClick={()=> handleEdit(blog)}></i>
                     </button>
                     <button className="delete-post">
                       <i className="bx bx-x-circle" onClick={(e)=>{

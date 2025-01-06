@@ -116,6 +116,8 @@ export const BlogProvider = ({ children }) => {
     setBlogs(savedBlogs);
   }, []);
 
+
+
   const handleEdit = (blog) => {
     setShowNews(false);
     setShowBlogs(true);
@@ -161,6 +163,7 @@ export const BlogProvider = ({ children }) => {
         contentValid,
         deletePost,
         handleEdit,
+        isEditing
       }}
     >
       {children}

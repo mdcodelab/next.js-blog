@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .news-header {
@@ -179,7 +180,8 @@ width: 100%;
 position: absolute;
 bottom: 0;
 left: 0;
-padding: 1rem 4rem 1rem;
+padding: 1rem 2rem;
+margin-bottom: -1rem;
 font-family: "Bebas Neue", sans-serif;
 font-size: clamp(1.5rem, 1.8cqi, 3rem);
 letter-spacing: 0.1rem;
@@ -248,6 +250,26 @@ font-weight: 300;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+    overflow-y: hidden;
+}
+
+.my-blogs::-webkit-scrollbar {
+    width: 0rem; 
+}
+
+.my-blogs::-webkit-scrollbar-track {
+    background: #111214;
+    border-radius: 1rem;
+}
+
+.my-blogs::-webkit-scrollbar-thumb {
+    background: #111214;
+    border-radius: 1rem;
+    border: 2px solid #111214; 
+}
+
+.my-blogs::-webkit-scrollbar-thumb:hover {
+    background: #111214;
 }
 
 .my-blogs-heading {
@@ -264,11 +286,19 @@ font-weight: 300;
     flex-direction:column;
     justify-content: space-between;
     gap: 0.75rem;
+    padding-right: 0.5rem;
+    overflow-y: scroll;
+    height: 100%;
 }
+
+.blog-posts::-webkit-scrollbar {
+    width: 0.6rem !important;
+}
+
 
 .blog-post {
     width: 100%;
-    height: 12rem;
+    height: 11rem;
     /* flex: 0 1 calc(100% - 0.6rem); */
     border-radius: 1rem;
     position: relative;

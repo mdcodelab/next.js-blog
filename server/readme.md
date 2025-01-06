@@ -1,0 +1,1 @@
+in the server folder, npm run dev

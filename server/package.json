@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "concurrently": "^9.1.2",
     "cors": "^2.8.5",
@@ -13,8 +12,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd ../client && npx next dev --port 3000",
-
+    "client": "npm run dev --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   }
 }

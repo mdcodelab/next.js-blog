@@ -1,8 +1,9 @@
-import express from "express";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import cors from "cors";
-import helmet from "helmet";
+const express = require("express");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const cors=require("cors");
+const helmet = require("helmet");
 
 //configuration
 dotenv.config();
@@ -19,7 +20,14 @@ app.get("/", (req, res) => {
 
 //server
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server is listening at port ${port}`);
-});
-
+const start = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("Database connected");
+    app.listen(port, () => console.log(`Server is listening at port ${port}`));
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+    process.exit(1);
+  }
+};
+start();

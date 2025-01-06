@@ -14,6 +14,11 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(cors());
 
+const router = require("./routes");
+
+app.use("/api/v1", router);
+
+
 app.get("/", (req, res) => {
   res.send("Home page");
 });

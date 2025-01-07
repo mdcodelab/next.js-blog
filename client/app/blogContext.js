@@ -52,7 +52,6 @@ export const BlogProvider = ({ children }) => {
   }, []);
 
 
-
   // Editing state
   const [selectedPost, setSelectedPost] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -135,20 +134,17 @@ export const BlogProvider = ({ children }) => {
         return;
       }
     }
-
     // Resetarea câmpurilor
     setImage(null);
     setTitle("");
     setContent("");
     setShowForm(false);
     setSubmitted(true);
-
     // Resetare mesaj de succes după 3 secunde
     setTimeout(() => {
       setSubmitted(false);
     }, 3000);
   };
-
 
   useEffect(() => {
     const savedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
@@ -167,16 +163,19 @@ export const BlogProvider = ({ children }) => {
     setImage(blog.image);
   };
 
-  const deletePost = (blog) => {
-    const confirmation = window.confirm(
-      `Are you sure you want to delete the post titled "${blog.title}"?`
-    );
-    if (confirmation) {
-      const updatedBlogs = blogs.filter((post) => post.title !== blog.title);
-      setBlogs(updatedBlogs);
-      localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+  const deletePost = async (blogId) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/v1/${blogId}`);
+      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== blogId));
+      alert("Blog deleted successfully!");
+    } catch (error) {
+      alert(
+        error.response?.data?.message ||
+          "Failed to delete blog. Please try again."
+      );
     }
   };
+
 
   return (
     <BlogContext.Provider

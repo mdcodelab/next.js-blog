@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    background: red;
 }
 
 .news-header {
@@ -68,6 +69,7 @@
     column-gap: 2rem;
     height: calc(100% - 16rem);
     padding: 0 1rem;
+    background: red;
 }
 
 .navbar {
@@ -76,6 +78,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 2rem; 
+    background: green;
 }
 
 .user {
@@ -155,6 +158,7 @@ display: block;
     width: clamp(30rem, 43cqi, 40%);
     height: 100%;
     border-radius: 1rem;
+    background: blue;
 }
 
 .headline {
@@ -394,7 +398,11 @@ overflow-wrap:break-word;
 
 /* responsive */
 @media (max-width: 1267) {
-
+.news {
+    flex-wrap: wrap;
+    overflow-x:hidden;
+    overflow-y: auto;
+}
 }
 
 

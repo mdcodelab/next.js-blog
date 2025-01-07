@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const BlogContext = createContext();
 
@@ -31,6 +32,26 @@ export const BlogProvider = ({ children }) => {
 
   // Blogs state
   const [blogs, setBlogs] = useState([]);
+
+  //GET ALL BLOGS
+  const getAllBlogs = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/v1");
+      setBlogs(response.data);
+    } catch (error) {
+      alert(
+        error.response?.data?.message ||
+          "Failed to fetch blogs. Please try again."
+      );
+    }
+  };
+
+  // Încărcarea blogurilor la montarea componentelor
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
+
+
 
   // Editing state
   const [selectedPost, setSelectedPost] = useState(null);
@@ -65,7 +86,8 @@ export const BlogProvider = ({ children }) => {
     setContentValid(true);
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validare titlu și conținut
@@ -93,9 +115,25 @@ export const BlogProvider = ({ children }) => {
         title,
         content,
       };
-      const updatedBlogs = [...blogs, newBlog];
-      setBlogs(updatedBlogs);
-      localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+
+      try {
+        // Cerere POST cu axios
+        const response = await axios.post(
+          "http://localhost:8000/api/v1",
+          newBlog
+        );
+
+        // Adăugare blog nou în lista locală după succesul cererii
+        const updatedBlogs = [...blogs, response.data.blog];
+        setBlogs(updatedBlogs);
+        localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+      } catch (error) {
+        alert(
+          error.response?.data?.message ||
+            "Failed to create blog. Please try again."
+        );
+        return;
+      }
     }
 
     // Resetarea câmpurilor
@@ -110,6 +148,7 @@ export const BlogProvider = ({ children }) => {
       setSubmitted(false);
     }, 3000);
   };
+
 
   useEffect(() => {
     const savedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];

@@ -8,7 +8,7 @@ const helmet = require("helmet");
 //configuration
 dotenv.config();
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
@@ -21,7 +21,7 @@ app.use("/api/v1", router);
 
 app.get("/", (req, res) => {
   res.send("Home page");
-});
+})
 
 //server
 const port = process.env.PORT || 4000;

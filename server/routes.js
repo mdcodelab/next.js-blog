@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
 });
 
 // Update a blog based on title or id
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { id, title, image, content } = req.body;
 
